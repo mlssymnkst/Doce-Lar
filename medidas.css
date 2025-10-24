@@ -1,0 +1,276 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Background */
+body {
+    font-family: Arial, sans-serif; 
+    background-color: #eee3f4; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+:root {
+    --dark-purple: #4f3a61; 
+    --light-purple: #eee3f4; 
+    --button-purple: #604975; 
+    --light-text: #ffffff;
+    --dark-text: #4f3a61;
+    --field-border: #d1c4e9; 
+}
+
+/* HEADER 
+/* ======================================= */
+
+.cabecalho { 
+    background-color: var(--dark-purple);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.logo-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 80px; 
+    width: auto;
+}
+
+.navegacao { 
+    display: flex;
+    gap: 80px;
+    flex-grow: 1; 
+    justify-content: center; 
+}
+
+.nav-item {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 2px;
+}
+
+.logout-icon {
+    color: var(--light-text);
+    margin-left: auto; 
+    display: flex;
+    align-items: center;
+}
+
+.icon-sair {
+    width: 28px;
+    height: 28px;
+    color: var(--light-text);
+}
+
+/* MAIN BODY
+================================ */
+.container-medidas {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.produtos-listas {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.coluna-produtos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/*  Item de Produto */
+.produto-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.produto-nome {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.controle-medida {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Barra de Medida */
+.range-container {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+.medida-display {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--light-purple);
+    color: rgb(246, 232, 255);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    min-width: 60px;
+    text-align: center;
+    transform: translateY(-50%) scale(0); /* Esconde inicialmente */
+    transition: transform 0.3s ease-out;
+    pointer-events: none; 
+}
+
+.medida-display.active {
+    transform: translateY(-50%) scale(1);
+}
+
+.medida-input-range {
+    width: 100%;
+    -webkit-appearance: none; /* Remove o estilo padrão do Chrome/Safari */
+    appearance: none;
+    height: 8px; /* Altura da barra */
+    background: var(--field-border); /* Cor de fundo da barra */
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0; 
+}
+
+/* Estilização do botão */
+.medida-input-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--button-purple);
+    border-radius: 50%;
+    cursor: grab;
+    border: none;
+}
+
+.medida-input-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--button-purple);
+    border-radius: 50%;
+    cursor: grab;
+    border: none;
+}
+
+/* Campo de Medida Editável */
+.medida-texto-edit {
+    font-weight: bold;
+    width: 80px; 
+    background-color: var(--light-purple);
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+}
+
+.medida-texto-edit:focus {
+    outline: 2px solid var(--dark-text);
+}
+
+/* Ícones de Ação */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--button-purple);
+    font-size: 18px;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.icon-btn:hover {
+    color: var(--light-purple);
+}
+
+/* Classe de input de range */
+.edit-mode .medida-texto-edit {
+    display: none; /* Esconde o texto editável */
+}
+
+.edit-mode .medida-input-range {
+    display: block; /* Mostra o slider */
+}
+
+/* Ocultar elementos específicos no modo oposto */
+.produto-item:not(.edit-mode) .medida-input-range {
+    display: none; /* Oculta o slider no modo normal */
+}
+
+/* Para o valor de medida acima da barra */
+.medida-valor {
+    background-color: var(--light-purple);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    min-width: 80px;
+    text-align: center;
+    position: relative; /* Para que o span de texto fique no lugar certo */
+    display: block;
+}
+
+/* Campo de texto de medida ativo */
+.medida-input-text {
+    background-color: var(--light-purple);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--button-purple);
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    display: none; /* Inicialmente oculto */
+}
+
+/*Ocultar valor estático*/
+.editando .medida-valor {
+    display: none;
+}
+
+.editando .medida-input-text {
+    display: block; /* Mostra o input de texto */
+}
+
+/* Estilização para simular a barra lilás com o valor dentro */
+.medida-display-box {
+    background-color: var(--light-purple);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    min-width: 80px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent; /* Para evitar que a borda mova os elementos ao focar */
+}
+
+.medida-display-box:focus {
+    border-color: var(--button-purple);
+    outline: none;
+}
